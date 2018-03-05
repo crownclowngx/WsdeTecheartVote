@@ -1,0 +1,6 @@
+C:\Users\xu.gao\Desktop\TecheartVote\TecheartVote\bin\Debug\TecheartVote.dll
+C:\Users\xu.gao\Desktop\TecheartVote\TecheartVote\bin\Debug\TecheartVote.pdb
+C:\Users\xu.gao\Desktop\TecheartVote\TecheartVote\obj\Debug\WsdeTecheartVote.csproj.CoreCompileInputs.cache
+C:\Users\xu.gao\Desktop\TecheartVote\TecheartVote\obj\Debug\TecheartVote.dll
+C:\Users\xu.gao\Desktop\TecheartVote\TecheartVote\obj\Debug\TecheartVote.pdb
+C:\Users\xu.gao\Desktop\TecheartVote\TecheartVote\obj\Debug\WsdeTecheartVote.csprojResolveAssemblyReference.cache

@@ -1,0 +1,9 @@
+C:\Users\xu.gao\Desktop\TecheartVote\Test\bin\Debug\Test.exe.config
+C:\Users\xu.gao\Desktop\TecheartVote\Test\bin\Debug\Test.exe
+C:\Users\xu.gao\Desktop\TecheartVote\Test\bin\Debug\Test.pdb
+C:\Users\xu.gao\Desktop\TecheartVote\Test\obj\Debug\Test.csproj.CoreCompileInputs.cache
+C:\Users\xu.gao\Desktop\TecheartVote\Test\obj\Debug\Test.exe
+C:\Users\xu.gao\Desktop\TecheartVote\Test\obj\Debug\Test.pdb
+C:\Users\xu.gao\Desktop\TecheartVote\Test\bin\Debug\TecheartVote.dll
+C:\Users\xu.gao\Desktop\TecheartVote\Test\bin\Debug\TecheartVote.pdb
+C:\Users\xu.gao\Desktop\TecheartVote\Test\obj\Debug\Test.csprojResolveAssemblyReference.cache
