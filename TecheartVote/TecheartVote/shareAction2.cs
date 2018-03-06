@@ -76,5 +76,19 @@ namespace TecheartVote
             }
             return b;
         }
+
+        public static shareAction2 GetAllAllowShare()
+        {
+            return new shareAction2()
+            {
+                clientCanChangeChannel = true,
+                clientCanChangeDate = true,
+                clientCanCnahgeTime = true,
+                clientCanErase = true,
+                clientCanWriteABC = true,
+                clientCanWriteNumber = true,
+                clinetCanSeeAnswer = true,
+            };
+        }
     }
 }

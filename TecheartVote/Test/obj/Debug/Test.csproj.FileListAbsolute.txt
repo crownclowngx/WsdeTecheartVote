@@ -7,3 +7,12 @@ C:\Users\xu.gao\Desktop\TecheartVote\Test\obj\Debug\Test.pdb
 C:\Users\xu.gao\Desktop\TecheartVote\Test\bin\Debug\TecheartVote.dll
 C:\Users\xu.gao\Desktop\TecheartVote\Test\bin\Debug\TecheartVote.pdb
 C:\Users\xu.gao\Desktop\TecheartVote\Test\obj\Debug\Test.csprojResolveAssemblyReference.cache
+D:\Project\github\WsdeTecheartVote\WsdeTecheartVote\TecheartVote\Test\bin\Debug\Test.exe.config
+D:\Project\github\WsdeTecheartVote\WsdeTecheartVote\TecheartVote\Test\bin\Debug\Test.exe
+D:\Project\github\WsdeTecheartVote\WsdeTecheartVote\TecheartVote\Test\bin\Debug\Test.pdb
+D:\Project\github\WsdeTecheartVote\WsdeTecheartVote\TecheartVote\Test\bin\Debug\TecheartVote.dll
+D:\Project\github\WsdeTecheartVote\WsdeTecheartVote\TecheartVote\Test\bin\Debug\TecheartVote.pdb
+D:\Project\github\WsdeTecheartVote\WsdeTecheartVote\TecheartVote\Test\obj\Debug\Test.csprojResolveAssemblyReference.cache
+D:\Project\github\WsdeTecheartVote\WsdeTecheartVote\TecheartVote\Test\obj\Debug\Test.csproj.CoreCompileInputs.cache
+D:\Project\github\WsdeTecheartVote\WsdeTecheartVote\TecheartVote\Test\obj\Debug\Test.exe
+D:\Project\github\WsdeTecheartVote\WsdeTecheartVote\TecheartVote\Test\obj\Debug\Test.pdb

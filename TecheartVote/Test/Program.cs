@@ -23,7 +23,7 @@ namespace Test
 
         private static void OnHandshake(WsdePort response)
         {
-            response.InitGroup(new List<ulong> { 1, 2, 3, 4 }, new shareAction1() { persistenceConfiguration = true }, new shareAction2() { clientCanWriteABC = true , clientCanChangeChannel=true, clientCanChangeDate=true, clientCanCnahgeTime=true, clientCanErase=true, clientCanWriteNumber=true, clinetCanSeeAnswer=true });
+            response.InitGroup(new List<ulong> { 1, 2, 3, 4 });
         }
     }
 }

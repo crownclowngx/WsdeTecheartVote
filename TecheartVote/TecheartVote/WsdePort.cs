@@ -132,12 +132,15 @@ namespace TecheartVote
         /// 初始化的第一步 初始化组
         /// </summary>
         /// <returns></returns>
-        public bool InitGroup(List<UInt64> secrets, shareAction1 s1, shareAction2 s2)
+        public bool InitGroup(List<UInt64> secrets)
         {
             if (!handshaked)
             {
                 throw new Exception("请首先握手调用Handshake函数");
             }
+            shareAction1 s1 = shareAction1.GetAllAllowShare();
+            shareAction2 s2 = shareAction2.GetAllAllowShare();
+            
             GroupingCommandRequest groupingCommandRequest = new GroupingCommandRequest(handshakeRespone, secrets, 1, s1, s2);
             var postdata = groupingCommandRequest.GetFinalArray();
             serialPort.Write(postdata, 0, 21);

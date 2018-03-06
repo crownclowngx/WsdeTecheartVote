@@ -59,6 +59,18 @@ namespace TecheartVote
             b+=(Byte)enu;
             return b;
         }
+
+        public static shareAction1 GetAllAllowShare()
+        {
+            return new shareAction1()
+            {
+                clientCanAnswer = true,
+                clientCanClearSoon = true,
+                clientCanSeeSolution = true,
+                eraseClientMemory = true,
+                persistenceConfiguration = true,
+            }; 
+        }
     }
     /// <summary>
     /// share1 的动作枚举
