@@ -129,23 +129,39 @@ namespace TecheartVote
         }
 
         /// <summary>
-        /// 初始化的第一步 初始化组
+        /// 主机获取剋通讯的所有投票器组
         /// </summary>
         /// <returns></returns>
         public bool InitGroup(List<UInt64> secrets)
         {
+            
             if (!handshaked)
             {
                 throw new Exception("请首先握手调用Handshake函数");
             }
+            Dictionary<String, List<UInt64>> secretsList = new Dictionary<String, List<ulong>>() { { "1",new List<ulong> ()} };
             shareAction1 s1 = shareAction1.GetAllAllowShare();
             shareAction2 s2 = shareAction2.GetAllAllowShare();
-            
-            GroupingCommandRequest groupingCommandRequest = new GroupingCommandRequest(handshakeRespone, secrets, 1, s1, s2);
-            var postdata = groupingCommandRequest.GetFinalArray();
-            serialPort.Write(postdata, 0, 21);
+
+            int numGroup = 1;
+            for(int i=0;i< secrets.Count; i++)
+            {
+                if (i % 4 == 0 && i>0)
+                {
+                    numGroup += 1;
+                }
+                secretsList[numGroup.ToString()].Add(secrets[i]);
+            }
+
+            foreach (var v in secretsList)
+            {
+                GroupingCommandRequest groupingCommandRequest = new GroupingCommandRequest(handshakeRespone, v.Value, Convert.ToInt32(v.Key), s1, s2);
+                var postdata = groupingCommandRequest.GetFinalArray();
+                serialPort.Write(postdata, 0, 21);
+            }
             return true;
         }
+        
 
     }
 }
