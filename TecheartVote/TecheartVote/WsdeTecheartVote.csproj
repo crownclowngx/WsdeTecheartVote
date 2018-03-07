@@ -41,14 +41,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActionEnum\ChannelAction.cs" />
+    <Compile Include="ActionEnum\DateAction.cs" />
+    <Compile Include="ActionEnum\FrequencyAction.cs" />
     <Compile Include="Cryptogram.cs" />
     <Compile Include="Request\BaseCommandRequest.cs" />
+    <Compile Include="Request\ConfigureCommandRequest.cs" />
     <Compile Include="Request\GroupingCommandRequest.cs" />
     <Compile Include="Response\HandshakeResponse.cs" />
     <Compile Include="HandshakeTools.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="shareAction1.cs" />
-    <Compile Include="shareAction2.cs" />
+    <Compile Include="ActionEnum\shareAction1.cs" />
+    <Compile Include="ActionEnum\shareAction2.cs" />
     <Compile Include="VerificationTools.cs" />
     <Compile Include="WsdePort.cs" />
   </ItemGroup>

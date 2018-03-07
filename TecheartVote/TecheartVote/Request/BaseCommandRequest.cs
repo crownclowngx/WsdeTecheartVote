@@ -75,12 +75,6 @@ namespace TecheartVote.Request
         public Byte[] GetFinalArray()
         {
             List<Byte> listFinalBody = new List<byte>();
-            //listFunal.Add(Convert.ToByte(head));
-
-            //listFunal.Add(Convert.ToByte(dataBelong));
-
-            //listFunal.Add(Convert.ToByte(handshakeSecretKey&0xFF00));
-            //listFunal.Add(Convert.ToByte(handshakeSecretKey&0xFF));
 
             listFinalBody.Add(Convert.ToByte((machineAddress & 0xFF000000)>>24));
             listFinalBody.Add(Convert.ToByte((machineAddress & 0xFF0000)>>16));

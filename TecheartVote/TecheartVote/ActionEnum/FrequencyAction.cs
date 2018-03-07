@@ -23,6 +23,7 @@ namespace TecheartVote
 
     public enum FrequencyEnum
     {
+        Null=999,
         dBM7=7,
         dBM4 = 6,
         dBM3 = 5,

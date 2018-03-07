@@ -24,6 +24,9 @@ namespace Test
         private static void OnHandshake(WsdePort response)
         {
             response.InitGroup(new List<ulong> { 1, 2, 3, 4 });
+            response.InitConf(new ConfAction() { channel=1, date=DateTime.Now, frequency=FrequencyEnum.dBM0 });
+            response.shareAction1P.clientCanAnswer = true;
+            response.UpdateDynamicConf();
         }
     }
 }

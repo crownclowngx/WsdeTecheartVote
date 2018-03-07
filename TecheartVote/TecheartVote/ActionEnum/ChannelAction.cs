@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TecheartVote.ActionEnum
+namespace TecheartVote
 {
     public class ChannelAction
     {

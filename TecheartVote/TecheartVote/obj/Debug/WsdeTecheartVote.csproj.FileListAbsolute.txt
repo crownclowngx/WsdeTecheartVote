@@ -10,3 +10,8 @@ D:\Project\github\WsdeTecheartVote\WsdeTecheartVote\TecheartVote\TecheartVote\ob
 D:\Project\github\WsdeTecheartVote\WsdeTecheartVote\TecheartVote\TecheartVote\obj\Debug\WsdeTecheartVote.csproj.CoreCompileInputs.cache
 D:\Project\github\WsdeTecheartVote\WsdeTecheartVote\TecheartVote\TecheartVote\obj\Debug\TecheartVote.dll
 D:\Project\github\WsdeTecheartVote\WsdeTecheartVote\TecheartVote\TecheartVote\obj\Debug\TecheartVote.pdb
+D:\Code\NewGit\WsdeTecheartVote\TecheartVote\TecheartVote\obj\Debug\WsdeTecheartVote.csprojResolveAssemblyReference.cache
+D:\Code\NewGit\WsdeTecheartVote\TecheartVote\TecheartVote\obj\Debug\TecheartVote.dll
+D:\Code\NewGit\WsdeTecheartVote\TecheartVote\TecheartVote\obj\Debug\TecheartVote.pdb
+D:\Code\NewGit\WsdeTecheartVote\TecheartVote\TecheartVote\bin\Debug\TecheartVote.dll
+D:\Code\NewGit\WsdeTecheartVote\TecheartVote\TecheartVote\bin\Debug\TecheartVote.pdb

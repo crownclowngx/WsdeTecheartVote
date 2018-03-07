@@ -52,6 +52,9 @@ namespace TecheartVote
         /// </summary>
         public event HandshakeHandler HandshakeEvent;
 
+        public shareAction1 shareAction1P { get; set; }
+        public shareAction2 shareAction2P { get; set; }
+
         public WsdePort(String port)
         {
             handMemList = new List<int>();
@@ -63,6 +66,8 @@ namespace TecheartVote
             serialPort.DataBits = 8;
             serialPort.Open();
             HandshakeAnalysis = k => { return HandshakeTools.AnalysisHandshake(k.ToArray()); };
+            shareAction1P = shareAction1.GetAllAllowShare();
+            shareAction2P = shareAction2.GetAllAllowShare();
         }
         private void OnDataReceived(object sender, SerialDataReceivedEventArgs e)
         {
@@ -140,9 +145,6 @@ namespace TecheartVote
                 throw new Exception("请首先握手调用Handshake函数");
             }
             Dictionary<String, List<UInt64>> secretsList = new Dictionary<String, List<ulong>>() { { "1",new List<ulong> ()} };
-            shareAction1 s1 = shareAction1.GetAllAllowShare();
-            shareAction2 s2 = shareAction2.GetAllAllowShare();
-
             int numGroup = 1;
             for(int i=0;i< secrets.Count; i++)
             {
@@ -155,13 +157,48 @@ namespace TecheartVote
 
             foreach (var v in secretsList)
             {
-                GroupingCommandRequest groupingCommandRequest = new GroupingCommandRequest(handshakeRespone, v.Value, Convert.ToInt32(v.Key), s1, s2);
+                GroupingCommandRequest groupingCommandRequest = new GroupingCommandRequest(handshakeRespone, v.Value, Convert.ToInt32(v.Key), shareAction1P, shareAction2P);
                 var postdata = groupingCommandRequest.GetFinalArray();
                 serialPort.Write(postdata, 0, 21);
             }
             return true;
         }
         
+        /// <summary>
+        /// 初始化主机配置包含 频率 信道等可以多次设置 ，但因为一般在一个生存周期内 只会设置一次 所以标识为Init
+        /// </summary>
+        /// <param name="conf"></param>
+        /// <returns></returns>
+        public bool InitConf(ConfAction conf)
+        {
+            ConfigureCommandRequest request = new ConfigureCommandRequest(handshakeRespone, shareAction1P, shareAction2P);
+            if (conf.channel > 0)
+            {
+                request.SetChannel(conf.channel);
+            }
+            if (conf.frequency != FrequencyEnum.Null)
+            {
+                request.SetFrequency(conf.frequency);
+            }
+            if(conf.date!=null && conf.date > DateTime.MinValue)
+            {
+                request.SetDate(conf.date);
+            }
+            var postdata = request.GetFinalArray();
+            serialPort.Write(postdata, 0, 21);
+            return true;
+        }
 
+        /// <summary>
+        /// 将当前的动态配置发送给主机 动态配置的属性是  shareAction1P 和 shareAction2P
+        /// </summary>
+        /// <returns></returns>
+        public bool UpdateDynamicConf()
+        {
+            ConfigureCommandRequest request = new ConfigureCommandRequest(handshakeRespone, shareAction1P, shareAction2P);
+            var postdata = request.GetFinalArray();
+            serialPort.Write(postdata, 0, 21);
+            return true;
+        }
     }
 }
