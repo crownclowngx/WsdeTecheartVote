@@ -6,6 +6,7 @@ using System.Text;
 using TecheartVote;
 using TecheartVote.Verification;
 using System.Linq;
+using TecheartVote.ActionEnum;
 
 namespace WsdeUnitTest
 {
@@ -46,7 +47,8 @@ namespace WsdeUnitTest
         [TestMethod]
         public void Uncode()
         {
-            byte[] bytes = Encoding.Unicode.GetBytes("1");
+            SubVoteDisplayAction s = new SubVoteDisplayAction();
+            s.GetDisplayData("ABCDE");
         }
         [TestMethod]
         public void AnalysisHandshakeProtocol()

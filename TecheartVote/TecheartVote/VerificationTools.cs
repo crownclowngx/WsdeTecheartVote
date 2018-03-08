@@ -59,5 +59,16 @@ namespace TecheartVote.Verification
             long sum = list.Sum();
             return sum & 255;
         }
+
+        public static bool StringIsNumber(String str)
+        {
+            double k = 0;
+            if(double.TryParse(str, out k))
+            {
+                return true;
+            }
+            return false;
+
+        }
     }
 }

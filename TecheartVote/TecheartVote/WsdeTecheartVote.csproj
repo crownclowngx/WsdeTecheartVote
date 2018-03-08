@@ -42,8 +42,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ActionEnum\ChannelAction.cs" />
+    <Compile Include="ActionEnum\ConfAction.cs" />
     <Compile Include="ActionEnum\DateAction.cs" />
     <Compile Include="ActionEnum\FrequencyAction.cs" />
+    <Compile Include="ActionEnum\SubVoteDisplayAction.cs" />
     <Compile Include="Cryptogram.cs" />
     <Compile Include="Request\BaseCommandRequest.cs" />
     <Compile Include="Request\ConfigureCommandRequest.cs" />
