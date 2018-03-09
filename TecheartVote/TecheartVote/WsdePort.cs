@@ -71,7 +71,9 @@ namespace TecheartVote
         }
         private void OnDataReceived(object sender, SerialDataReceivedEventArgs e)
         {
+            
             int trynum = 0;
+            eventOn:
             int count = serialPort.BytesToRead;
             if (!handshaked)
             {
@@ -100,11 +102,44 @@ namespace TecheartVote
             }
             else //包含设置通道等
             {
+                if (trynum > 2)
+                {
+                    return; 
+                }
+                if(count < 21 && trynum<2)
+                {
+                    Thread.Sleep(100);
+                    goto eventOn;
+                }
                 for (int i = 0; i < count; i++)
                 {
-                    memList.Add(serialPort.ReadByte());
+                    if (serialPort.ReadByte() == 221)
+                    {
+                        break;
+                    }
                 }
-                Console.Read();
+
+                byte[] kfirst = new byte[20];
+                serialPort.Read(kfirst, 0, 20);
+                byte[] kfirstFinal = new byte[21];
+                kfirstFinal[0] = 221;
+                for(int i = 0; i < 20; i++)
+                {
+                    kfirstFinal[i + 1] = kfirst[i];
+                }
+                var resp=SubSelectResponse.GetSubDate(kfirst, handshakeRespone);
+                //TODO 触发事件
+                while (true)
+                {
+                    if (serialPort.BytesToRead<21)
+                    {
+                        break;
+                    }
+                    byte[] k = new byte[21];
+                    serialPort.Read(k, 0, 21);
+                    var resp1=SubSelectResponse.GetSubDate(k, handshakeRespone);
+                    //TODO 触发事件
+                }
             }
             
         }

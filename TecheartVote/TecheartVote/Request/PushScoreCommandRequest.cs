@@ -11,7 +11,7 @@ namespace TecheartVote.Request
     {
         public PushScoreCommandRequest(HandshakeResponse response, shareAction1 s1, shareAction2 s2,long subNumber,String answer) : base(response, s1, s2)
         {
-            this.dataBelong = 0;
+            this.dataBelong = 64;
             this.number = 130;
             this.machineAddress = subNumber;
             this.dotPwoer = SubVoteDisplayAction.GetSubVoteDisplayAction(answer);

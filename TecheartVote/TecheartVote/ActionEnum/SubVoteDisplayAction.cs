@@ -58,6 +58,18 @@ namespace TecheartVote
         public static UInt64 GetDisplayData(String data)
         {
             UInt64 ul = 0;
+            if (data.ToLower() == "yes")
+            {
+                return 768955;
+            }
+            if (data.ToLower() == "no")
+            {
+                return 838860;
+            }
+            if (data.ToLower() == "login")
+            {
+                return 908765;
+            }
             List<Byte> lby = new List<byte>();
             foreach(var v in data)
             {

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TecheartVote.Response;
 
 namespace TecheartVote
 {
@@ -35,6 +36,29 @@ namespace TecheartVote
                 }
             }
             return newDynamic;
+        }
+
+        public static Byte[] Decrypt(List<Byte> list, Byte lowByte, Byte highByte)
+        {
+            Byte[] EncryptionData = new Byte[16];
+            var dynamicCipher = GetDynamicCipher(lowByte, highByte);
+            for (int i = 0; i < list.Count; i++)
+            {
+                EncryptionData[i] = Convert.ToByte(list[i] ^ dynamicCipher[i]);
+            }
+            return EncryptionData;
+        }
+
+        public static Byte[] Decrypt(Byte[] list, Byte lowByte, Byte highByte)
+        {
+            return Decrypt(list.ToArray(), lowByte, highByte);
+        }
+
+        public static Byte[] Decrypt(Byte[] list, HandshakeResponse hand)
+        {
+            Byte lowByte = Convert.ToByte(hand.SecretKey & 0xFF);
+            Byte highByte = Convert.ToByte((hand.SecretKey & 0xFF00) >> 8);
+            return Decrypt(list.ToArray(), lowByte, highByte);
         }
     }
 }

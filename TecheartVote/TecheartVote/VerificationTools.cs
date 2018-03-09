@@ -34,7 +34,10 @@ namespace TecheartVote.Verification
             long last=list.Last();
             return last== HashCalc(list);
         }
-
+        public static bool HashCheck(List<Byte> list)
+        {
+            return HashCheck(list.ConvertAll<int>(new Converter<byte, int>(new Func<Byte, int>(k => Convert.ToInt32(k)))));
+        }
         public static long HashCalc(List<int> list)
         {
             if (list == null)
