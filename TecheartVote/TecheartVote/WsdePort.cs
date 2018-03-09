@@ -200,5 +200,21 @@ namespace TecheartVote
             serialPort.Write(postdata, 0, 21);
             return true;
         }
+
+        public bool PushAnswer(int quesNumber,String answer)
+        {
+            PushAnswerCommandRequest request = new PushAnswerCommandRequest(handshakeRespone, shareAction1P, shareAction2P, quesNumber, answer);
+            var postdata = request.GetFinalArray();
+            serialPort.Write(postdata, 0, 21);
+            return true;
+        }
+
+        public bool PushScore(long subNumber, String score)
+        {
+            PushScoreCommandRequest request = new PushScoreCommandRequest(handshakeRespone, shareAction1P, shareAction2P, subNumber, score);
+            var postdata = request.GetFinalArray();
+            serialPort.Write(postdata, 0, 21);
+            return true;
+        }
     }
 }

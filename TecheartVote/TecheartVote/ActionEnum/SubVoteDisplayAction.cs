@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TecheartVote.ActionEnum
+namespace TecheartVote
 {
     /// <summary>
     /// 子机展示控制
@@ -35,7 +35,7 @@ namespace TecheartVote.ActionEnum
             { "h",9},
             { "i",10},
         };
-        public Byte GetSubVoteDisplayAction(String str)
+        public static Byte GetSubVoteDisplayAction(String str)
         {
             Byte response = 0;
             if (Verification.VerificationTools.StringIsNumber(str))
@@ -47,7 +47,7 @@ namespace TecheartVote.ActionEnum
             {
                 return response;
             }
-            return Convert.ToByte(response + spstr.Count() + 1);
+            return Convert.ToByte(response + ((spstr.Count() + 1)<<4));
         }
 
         /// <summary>
@@ -55,7 +55,7 @@ namespace TecheartVote.ActionEnum
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
-        public UInt64 GetDisplayData(String data)
+        public static UInt64 GetDisplayData(String data)
         {
             UInt64 ul = 0;
             List<Byte> lby = new List<byte>();
