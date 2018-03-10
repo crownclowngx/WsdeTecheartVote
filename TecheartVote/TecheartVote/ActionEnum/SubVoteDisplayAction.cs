@@ -35,6 +35,32 @@ namespace TecheartVote
             { "h",9},
             { "i",10},
         };
+
+        static Dictionary<int, String> dicreverse = new Dictionary<int, String>()
+        {
+            {0, " "},
+            {1, "0"},
+            {2, "1"},
+            {3, "2"},
+            {4, "3"},
+            {5, "4"},
+            {6, "5"},
+            {7, "6"},
+            {8, "7"},
+            {9, "8"},
+            {10,"9"},
+            {101,"j"},
+            {102,"a"},
+            {103,"b"},
+            {104,"c"},
+            {105,"d"},
+            {106,"e"},
+            {107,"f"},
+            {108,"g"},
+            {109,"h"},
+            {110,"i"},
+            {9999,"."},
+        };
         public static Byte GetSubVoteDisplayAction(String str)
         {
             Byte response = 0;
@@ -88,5 +114,85 @@ namespace TecheartVote
             }
             return ul;
         }
+
+        public static String AnalysisDisplayData(byte[] arr)
+        {
+            return "";
+        }
+        public static SubDisplaySign AnalysisSubDisplaySign(Byte sign)
+        {
+            SubDisplaySign ana = new SubDisplaySign();
+            if ((sign & 0x80) !=0)
+            {
+                ana.isLetter = true;
+            }
+            ana.floatLocation=(sign & 0x70) >> 4;
+            ana.batteryLevel = (sign & 0xF);
+            return ana;
+        }
+
+        /// <summary>
+        /// byte数组是一个 8Byte的数组
+        /// </summary>
+        /// <param name="sign"></param>
+        /// <param name="arr"></param>
+        /// <returns></returns>
+        public static String AnalysisDisplayData(SubDisplaySign sign, byte[] arr)
+        {
+            List<int> lreturn = new List<int>();
+            lreturn.Add( arr[5]);
+            if (sign.floatLocation == 5)
+            {
+                lreturn.Add(9999);
+            }
+            lreturn.Add( arr[6] & 0xf0);
+            if (sign.floatLocation == 4)
+            {
+                lreturn.Add(9999);
+            }
+            lreturn.Add( arr[6] & 0xf);
+            if (sign.floatLocation == 3)
+            {
+                lreturn.Add(9999);
+            }
+            lreturn.Add( arr[7] & 0xf0);
+            if (sign.floatLocation == 2)
+            {
+                lreturn.Add(9999);
+            }
+            lreturn.Add( arr[7] & 0xf);
+            if (sign.floatLocation == 1)
+            {
+                lreturn.Add(9999);
+            }
+            if (sign.isLetter)
+            {
+                for (int i = 0; i < lreturn.Count; i++)
+                {
+                    lreturn[i] += 100;
+                }
+            }
+            List<String> lresp = new List<string>();
+            lreturn.ForEach(k => lresp.Add(dicreverse[k]));
+            return "";
+        }
+    }
+
+    public class SubDisplaySign
+    {
+        /// <summary>
+        /// 是否展示成字母
+        /// </summary>
+        public bool isLetter { get; set; }
+
+        /// <summary>
+        /// 浮点位置 0 表示没有小数点 
+        /// </summary>
+        public int floatLocation { get; set; }
+
+        /// <summary>
+        /// 电池电量
+        /// </summary>
+        public int batteryLevel { get; set; }
     }
 }

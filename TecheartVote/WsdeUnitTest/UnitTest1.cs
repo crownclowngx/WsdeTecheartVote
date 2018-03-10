@@ -6,7 +6,6 @@ using System.Text;
 using TecheartVote;
 using TecheartVote.Verification;
 using System.Linq;
-using TecheartVote.ActionEnum;
 
 namespace WsdeUnitTest
 {
@@ -16,6 +15,9 @@ namespace WsdeUnitTest
         [TestMethod]
         public void TestMethod1()
         {
+            List<int> k = new List<int>() {1,2 };
+            k.ForEach(m => m += 100);
+
         }
         [TestMethod]
         public void SerialPortTest()
@@ -47,8 +49,7 @@ namespace WsdeUnitTest
         [TestMethod]
         public void Uncode()
         {
-            SubVoteDisplayAction s = new SubVoteDisplayAction();
-            s.GetDisplayData("ABCDE");
+            SubVoteDisplayAction.GetDisplayData("ABCDE");
         }
         [TestMethod]
         public void AnalysisHandshakeProtocol()

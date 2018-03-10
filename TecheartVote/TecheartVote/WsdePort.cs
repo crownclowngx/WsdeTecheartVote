@@ -47,10 +47,14 @@ namespace TecheartVote
         /// 握手委托
         /// </summary>
         public delegate void HandshakeHandler(WsdePort handshake);
+
+        public delegate void OnDateComeHandler(WsdePort handshake,String date,SubSelect subselect);
         /// <summary>
         /// 握手事件
         /// </summary>
         public event HandshakeHandler HandshakeEvent;
+
+        public event OnDateComeHandler OnDateCome;
 
         public shareAction1 shareAction1P { get; set; }
         public shareAction2 shareAction2P { get; set; }
@@ -128,7 +132,7 @@ namespace TecheartVote
                     kfirstFinal[i + 1] = kfirst[i];
                 }
                 var resp=SubSelectResponse.GetSubDate(kfirst, handshakeRespone);
-                //TODO 触发事件
+                OnDateCome(this, SubVoteDisplayAction.AnalysisDisplayData(kfirstFinal), resp);
                 while (true)
                 {
                     if (serialPort.BytesToRead<21)
@@ -138,7 +142,7 @@ namespace TecheartVote
                     byte[] k = new byte[21];
                     serialPort.Read(k, 0, 21);
                     var resp1=SubSelectResponse.GetSubDate(k, handshakeRespone);
-                    //TODO 触发事件
+                    OnDateCome(this, SubVoteDisplayAction.AnalysisDisplayData(k), resp1);
                 }
             }
             
