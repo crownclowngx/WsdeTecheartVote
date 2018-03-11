@@ -182,14 +182,14 @@ namespace TecheartVote
                 }
             }
             List<String> lresp = new List<string>();
-            if (lreturn.TrueForAll(k => k == 13))
+            if (lreturn.TrueForAll(k => k == 13 || k == 113))
             {
                 return "login";
             }
-            if(lreturn.TrueForAll(k => k == 12)){
+            if(lreturn.TrueForAll(k => k == 12 || k == 112)){
                 return "no";
             }
-            if (lreturn.TrueForAll(k => k == 11))
+            if (lreturn.TrueForAll(k => k == 11 || k == 111))
             {
                 return "yes";
             }

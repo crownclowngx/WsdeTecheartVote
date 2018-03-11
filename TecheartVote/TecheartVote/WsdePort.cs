@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using TecheartVote.CacheManager;
 using TecheartVote.Request;
 using TecheartVote.Response;
 using TecheartVote.Verification;
@@ -14,6 +15,10 @@ namespace TecheartVote
     public class WsdePort
     {
         /// <summary>
+        /// 主机名称
+        /// </summary>
+        public string wsdeName{get;set;}
+        /// <summary>
         /// 
         /// </summary>
         public  int channel { get; set; }
@@ -21,6 +26,10 @@ namespace TecheartVote
         /// 是否已握手
         /// </summary>
         public bool handshaked { get; set; }
+        /// <summary>
+        /// 答案缓存
+        /// </summary>
+        public SubjectCacheManger subAnswerDic { get; set; }
         /// <summary>
         /// 串口类
         /// </summary>
@@ -67,6 +76,7 @@ namespace TecheartVote
         {
             handMemList = new List<int>();
             memList = new List<int>();
+            subAnswerDic = new SubjectCacheManger();
             serialPort = new SerialPort();
             serialPort.DataReceived += new System.IO.Ports.SerialDataReceivedEventHandler(OnDataReceived);
             serialPort.BaudRate = 115200;
@@ -247,11 +257,28 @@ namespace TecheartVote
             return true;
         }
 
+        [Obsolete("该函数已经被弃用，应用该函数下发答案需要按顺序发送所有答案否则将会导致不可预知的问题 请使用 无参的 PushAnswer()")]
         public bool PushAnswer(int quesNumber,String answer)
         {
             PushAnswerCommandRequest request = new PushAnswerCommandRequest(handshakeRespone, shareAction1P, shareAction2P, quesNumber, answer);
             var postdata = request.GetFinalArray();
             serialPort.Write(postdata, 0, 21);
+            return true;
+        }
+
+        /// <summary>
+        /// 发送 subAnswerDic 中缓存的答案
+        /// </summary>
+        /// <returns></returns>
+        public bool PushAnswer()
+        {
+            for(int i = 1; i < 130; i++)
+            {
+                PushAnswerCommandRequest request = new PushAnswerCommandRequest(handshakeRespone, shareAction1P, shareAction2P, i, subAnswerDic.GetAnswer(i));
+                var postdata = request.GetFinalArray();
+                serialPort.Write(postdata, 0, 21);
+                Thread.Sleep(15);
+            }
             return true;
         }
 

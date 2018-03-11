@@ -32,6 +32,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Management" />
     <Reference Include="System.Numerics" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -47,6 +48,7 @@
     <Compile Include="ActionEnum\FrequencyAction.cs" />
     <Compile Include="ActionEnum\SubSelect.cs" />
     <Compile Include="ActionEnum\SubVoteDisplayAction.cs" />
+    <Compile Include="CacheManager\SubjectCacheManger.cs" />
     <Compile Include="Cryptogram.cs" />
     <Compile Include="Request\BaseCommandRequest.cs" />
     <Compile Include="Request\ConfigureCommandRequest.cs" />
@@ -59,8 +61,12 @@
     <Compile Include="ActionEnum\shareAction1.cs" />
     <Compile Include="ActionEnum\shareAction2.cs" />
     <Compile Include="Response\SubSelectResponse.cs" />
+    <Compile Include="UsbManager\DevManager.cs" />
+    <Compile Include="UsbManager\Usb.cs" />
+    <Compile Include="UsbManager\WsdeUsbManager.cs" />
     <Compile Include="VerificationTools.cs" />
     <Compile Include="WsdePort.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

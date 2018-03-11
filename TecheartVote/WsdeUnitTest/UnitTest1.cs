@@ -6,6 +6,7 @@ using System.Text;
 using TecheartVote;
 using TecheartVote.Verification;
 using System.Linq;
+using System.IO;
 
 namespace WsdeUnitTest
 {
@@ -15,8 +16,7 @@ namespace WsdeUnitTest
         [TestMethod]
         public void TestMethod1()
         {
-            List<int> k = new List<int>() {1,2 };
-            k.ForEach(m => m += 100);
+            DriveInfo[] allDrives = DriveInfo.GetDrives();
 
         }
         [TestMethod]
@@ -44,6 +44,7 @@ namespace WsdeUnitTest
 
         private void OnDataReceived(object sender, SerialDataReceivedEventArgs e)
         {
+
             Console.ReadKey();
         }
         [TestMethod]

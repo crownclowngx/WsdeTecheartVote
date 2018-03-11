@@ -43,7 +43,7 @@ namespace TecheartVote.Response
 
             subdate.address = k;
             subdate.selectDate = k3;
-            subdate.number = text[4];
+            subdate.subjectNumber = text[4];
             return subdate;
         }
     }

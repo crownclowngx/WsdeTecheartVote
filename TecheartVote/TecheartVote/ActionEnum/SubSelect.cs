@@ -16,7 +16,7 @@ namespace TecheartVote
         /// <summary>
         /// 不明意义可能是题号？
         /// </summary>
-        public int number { get; set; }
+        public int subjectNumber { get; set; }
 
         /// <summary>
         /// 选择的数据
