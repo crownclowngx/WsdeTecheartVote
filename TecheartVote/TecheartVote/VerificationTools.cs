@@ -27,7 +27,7 @@ namespace TecheartVote.Verification
 
         public static bool HashCheck(List<int> list)
         {
-            if (list == null || list.Count != 82)
+            if (list == null)
             {
                 return false;
             }

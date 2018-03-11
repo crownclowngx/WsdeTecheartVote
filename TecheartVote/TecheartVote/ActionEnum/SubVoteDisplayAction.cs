@@ -38,7 +38,7 @@ namespace TecheartVote
 
         static Dictionary<int, String> dicreverse = new Dictionary<int, String>()
         {
-            {0, " "},
+            {0, ""},
             {1, "0"},
             {2, "1"},
             {3, "2"},
@@ -49,6 +49,7 @@ namespace TecheartVote
             {8, "7"},
             {9, "8"},
             {10,"9"},
+            {100,""},
             {101,"j"},
             {102,"a"},
             {103,"b"},
@@ -119,6 +120,14 @@ namespace TecheartVote
         {
             return "";
         }
+        public static long AnalysisSubAddress(byte[] arr)
+        {
+            return (Convert.ToInt64(arr[0]) << 32) +
+             (Convert.ToInt64(arr[1]) << 16) +
+             (Convert.ToInt64(arr[2]) << 8) +
+             Convert.ToInt64(arr[3]);
+        }
+
         public static SubDisplaySign AnalysisSubDisplaySign(Byte sign)
         {
             SubDisplaySign ana = new SubDisplaySign();
@@ -145,7 +154,7 @@ namespace TecheartVote
             {
                 lreturn.Add(9999);
             }
-            lreturn.Add( arr[6] & 0xf0);
+            lreturn.Add( (arr[6] & 0xf0)>>4);
             if (sign.floatLocation == 4)
             {
                 lreturn.Add(9999);
@@ -155,7 +164,7 @@ namespace TecheartVote
             {
                 lreturn.Add(9999);
             }
-            lreturn.Add( arr[7] & 0xf0);
+            lreturn.Add( (arr[7] & 0xf0)>>4);
             if (sign.floatLocation == 2)
             {
                 lreturn.Add(9999);
@@ -173,8 +182,22 @@ namespace TecheartVote
                 }
             }
             List<String> lresp = new List<string>();
+            if (lreturn.TrueForAll(k => k == 13))
+            {
+                return "login";
+            }
+            if(lreturn.TrueForAll(k => k == 12)){
+                return "no";
+            }
+            if (lreturn.TrueForAll(k => k == 11))
+            {
+                return "yes";
+            }
             lreturn.ForEach(k => lresp.Add(dicreverse[k]));
-            return "";
+
+            StringBuilder sb = new StringBuilder();
+            lresp.ForEach(k => sb.Append(k));
+            return sb.ToString();
         }
     }
 

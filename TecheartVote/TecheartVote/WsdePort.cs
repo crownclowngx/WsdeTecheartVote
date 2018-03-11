@@ -14,6 +14,10 @@ namespace TecheartVote
     public class WsdePort
     {
         /// <summary>
+        /// 
+        /// </summary>
+        public  int channel { get; set; }
+        /// <summary>
         /// 是否已握手
         /// </summary>
         public bool handshaked { get; set; }
@@ -48,7 +52,7 @@ namespace TecheartVote
         /// </summary>
         public delegate void HandshakeHandler(WsdePort handshake);
 
-        public delegate void OnDateComeHandler(WsdePort handshake,String date,SubSelect subselect);
+        public delegate void OnDateComeHandler(WsdePort handshake,SubSelect subselect);
         /// <summary>
         /// 握手事件
         /// </summary>
@@ -102,6 +106,7 @@ namespace TecheartVote
                 }
                 handshaked = true;
                 handshakeRespone = HandshakeAnalysis(handMemList);
+                channel = handshakeRespone.Channel;
                 HandshakeEvent(this);
             }
             else //包含设置通道等
@@ -131,8 +136,8 @@ namespace TecheartVote
                 {
                     kfirstFinal[i + 1] = kfirst[i];
                 }
-                var resp=SubSelectResponse.GetSubDate(kfirst, handshakeRespone);
-                OnDateCome(this, SubVoteDisplayAction.AnalysisDisplayData(kfirstFinal), resp);
+                var resp=SubSelectResponse.GetSubDate(kfirstFinal, handshakeRespone);
+                OnDateCome(this, resp);
                 while (true)
                 {
                     if (serialPort.BytesToRead<21)
@@ -142,7 +147,7 @@ namespace TecheartVote
                     byte[] k = new byte[21];
                     serialPort.Read(k, 0, 21);
                     var resp1=SubSelectResponse.GetSubDate(k, handshakeRespone);
-                    OnDateCome(this, SubVoteDisplayAction.AnalysisDisplayData(k), resp1);
+                    OnDateCome(this, resp1);
                 }
             }
             
@@ -214,6 +219,7 @@ namespace TecheartVote
             if (conf.channel > 0)
             {
                 request.SetChannel(conf.channel);
+                channel = conf.channel;
             }
             if (conf.frequency != FrequencyEnum.Null)
             {
@@ -235,6 +241,7 @@ namespace TecheartVote
         public bool UpdateDynamicConf()
         {
             ConfigureCommandRequest request = new ConfigureCommandRequest(handshakeRespone, shareAction1P, shareAction2P);
+            request.SetChannel(channel);
             var postdata = request.GetFinalArray();
             serialPort.Write(postdata, 0, 21);
             return true;

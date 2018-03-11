@@ -51,14 +51,22 @@ namespace TecheartVote
 
         public static Byte[] Decrypt(Byte[] list, Byte lowByte, Byte highByte)
         {
-            return Decrypt(list.ToArray(), lowByte, highByte);
+            List<Byte> finlist = new List<byte>();
+            for (int i = 4; i < 20; i++)
+            {
+                finlist.Add(list[i]);
+            }
+            return Decrypt(finlist, lowByte, highByte);
         }
 
         public static Byte[] Decrypt(Byte[] list, HandshakeResponse hand)
         {
-            Byte lowByte = Convert.ToByte(hand.SecretKey & 0xFF);
-            Byte highByte = Convert.ToByte((hand.SecretKey & 0xFF00) >> 8);
-            return Decrypt(list.ToArray(), lowByte, highByte);
+            List<Byte> finlist = new List<byte>();
+            for(int i = 4; i < 20; i++)
+            {
+                finlist.Add(list[i]);
+            }
+            return Decrypt(finlist, list[3], list[2]);
         }
     }
 }
