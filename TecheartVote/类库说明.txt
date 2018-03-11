@@ -1,0 +1,38 @@
+类库使用说明
+主要类型
+WsdePort：投票器抽象模型
+方法：
+1.Handshake() 握手方法，在与主机通讯前需要进行握手以确认是否可以通讯
+1.1参数 无
+
+2.InitGroup(List<UInt64> secrets) 分组方法，下发可以与主机进行通讯的所有密码，密码是每个子机独有的，所以需要在握手之后下发所有可以与其通讯的机器的准入密码
+2.1参数 secrets，密钥列表
+
+3.InitConf(ConfAction conf) 修改主机静态配置方法包含 信道 ，日期，时间
+3.1 参数 conf 初始配置列表，其中channel表示信道 frequency表示频率 date表时间
+
+4.UpdateDynamicConf() 修改动态配置 动态配置是属性 shareAction1P 和 shareAction2P
+4.1 参数 无，该方法直接将主机状态修改成 WsdePort实例中 shareAction1P shareAction2P 的当前值
+
+5. PushAnswer() 下发答案
+5.1 参数 无 该方法直接下发WsdePort实例中subAnswerDic属性中的所有值
+
+6.PushScore(long subNumber, String score) 下发分数 该方法对时间的要求强烈
+6.1 参数 subNumber子机地址  改地址下的分数 score
+事件：
+1.HandshakeEvent 握手成功后触发事件，返回WsdePort对象本身
+
+2.OnDateCome 当子机有数据到达时触发事件，返回WsdePort对象以及 子机返回值
+
+
+
+WsdeUsbManager：usb主机管理类
+方法：无
+事件：
+1.OnWsdeUsbComed 当主机接入pc时触发事件 返回握手成功后的WsdePort实例
+
+2.OnWsdeUsbExited 当主机离开pc时触发事件 返回最后一次成功通讯钱的WsdePort实例
+
+
+
+SroceCacheManager：分数管理缓存 可以暂时缓存分数 以提高通讯效率，但是建议自行在软件中进行缓存
