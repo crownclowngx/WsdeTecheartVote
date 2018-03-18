@@ -11,13 +11,16 @@ namespace TecheartVote.UsbManager
 {
     public class WsdeUsbManager
     {
-        bool handtrue = false;
         USB ezUSB = new USB();
+
         AutoResetEvent autoResetEvent = new AutoResetEvent(false);
+
         public delegate void OnWsdeUsbHandler(WsdePort wsdePort);
+
         public event OnWsdeUsbHandler OnWsdeUsbComed;
 
         public event OnWsdeUsbHandler OnWsdeUsbExited;
+
         private static Dictionary<String, WsdePort> wsdePortUsbDic = new Dictionary<string, WsdePort>();
         public WsdeUsbManager()
         {
@@ -39,16 +42,18 @@ namespace TecheartVote.UsbManager
                     {
                         continue;
                     }
+
                     WsdePort wsdePort = new WsdePort("COM"+kk.ToString());
                     wsdePort.wsdeName = "COM" + kk.ToString();
+
                     wsdePort.HandshakeEvent += new HandshakeHandler(OnHandshake);
                     wsdePort.Handshake();
-                    autoResetEvent.WaitOne();
-                    if (handtrue)
+                    if (!autoResetEvent.WaitOne(3000))
                     {
-                        wsdePortUsbDic.Add(s, wsdePort);
-                        OnWsdeUsbComed(wsdePort);
+                        continue;
                     }
+                    wsdePortUsbDic.Add(s, wsdePort);
+                    OnWsdeUsbComed(wsdePort);
                 }
 
             }
@@ -71,7 +76,6 @@ namespace TecheartVote.UsbManager
 
         private void OnHandshake(WsdePort response)
         {
-            handtrue = true;
             autoResetEvent.Set();
         }
     }
