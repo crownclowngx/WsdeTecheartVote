@@ -10,3 +10,15 @@ E:\Code\WsdeTecheartVote\TecheartVote\Demo\obj\Debug\Demo.csproj.GenerateResourc
 E:\Code\WsdeTecheartVote\TecheartVote\Demo\obj\Debug\Demo.csproj.CoreCompileInputs.cache
 E:\Code\WsdeTecheartVote\TecheartVote\Demo\obj\Debug\Demo.exe
 E:\Code\WsdeTecheartVote\TecheartVote\Demo\obj\Debug\Demo.pdb
+D:\Project\github\WsdeTecheartVote\WsdeTecheartVote\TecheartVote\Demo\bin\Debug\Demo.exe.config
+D:\Project\github\WsdeTecheartVote\WsdeTecheartVote\TecheartVote\Demo\bin\Debug\Demo.exe
+D:\Project\github\WsdeTecheartVote\WsdeTecheartVote\TecheartVote\Demo\bin\Debug\Demo.pdb
+D:\Project\github\WsdeTecheartVote\WsdeTecheartVote\TecheartVote\Demo\bin\Debug\TecheartVote.dll
+D:\Project\github\WsdeTecheartVote\WsdeTecheartVote\TecheartVote\Demo\bin\Debug\TecheartVote.pdb
+D:\Project\github\WsdeTecheartVote\WsdeTecheartVote\TecheartVote\Demo\obj\Debug\Demo.csprojResolveAssemblyReference.cache
+D:\Project\github\WsdeTecheartVote\WsdeTecheartVote\TecheartVote\Demo\obj\Debug\Demo.Form1.resources
+D:\Project\github\WsdeTecheartVote\WsdeTecheartVote\TecheartVote\Demo\obj\Debug\Demo.Properties.Resources.resources
+D:\Project\github\WsdeTecheartVote\WsdeTecheartVote\TecheartVote\Demo\obj\Debug\Demo.csproj.GenerateResource.Cache
+D:\Project\github\WsdeTecheartVote\WsdeTecheartVote\TecheartVote\Demo\obj\Debug\Demo.csproj.CoreCompileInputs.cache
+D:\Project\github\WsdeTecheartVote\WsdeTecheartVote\TecheartVote\Demo\obj\Debug\Demo.exe
+D:\Project\github\WsdeTecheartVote\WsdeTecheartVote\TecheartVote\Demo\obj\Debug\Demo.pdb
