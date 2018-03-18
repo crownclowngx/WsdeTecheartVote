@@ -21,6 +21,8 @@ namespace TecheartVote
         /// <summary>
         /// 选择的数据
         /// </summary>
-        public String selectDate { get; set; }
+        public String selectData { get; set; }
+
+        public long key { get; set; }
     }
 }

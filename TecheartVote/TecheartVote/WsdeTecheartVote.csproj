@@ -51,6 +51,7 @@
     <Compile Include="CacheManager\SubjectCacheManger.cs" />
     <Compile Include="Cryptogram.cs" />
     <Compile Include="Request\BaseCommandRequest.cs" />
+    <Compile Include="Request\ConfigScoreCommandRequest.cs" />
     <Compile Include="Request\ConfigureCommandRequest.cs" />
     <Compile Include="Request\GroupingCommandRequest.cs" />
     <Compile Include="Request\PushAnswerCommandRequest.cs" />
@@ -61,12 +62,15 @@
     <Compile Include="ActionEnum\shareAction1.cs" />
     <Compile Include="ActionEnum\shareAction2.cs" />
     <Compile Include="Response\SubSelectResponse.cs" />
+    <Compile Include="CacheManager\SroceCacheManager.cs" />
     <Compile Include="UsbManager\DevManager.cs" />
     <Compile Include="UsbManager\Usb.cs" />
     <Compile Include="UsbManager\WsdeUsbManager.cs" />
     <Compile Include="VerificationTools.cs" />
     <Compile Include="WsdePort.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="ReadMe.txt" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

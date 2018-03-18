@@ -34,7 +34,7 @@ namespace TecheartVote
         public bool clientCanChangeDate { get; set; }
 
         /// <summary>
-        /// 是否允许修改具体事件
+        /// 是否允许修改具体时间
         /// </summary>
         public bool clientCanCnahgeTime { get; set; }
 

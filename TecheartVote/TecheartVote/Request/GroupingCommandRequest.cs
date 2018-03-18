@@ -37,7 +37,8 @@ namespace TecheartVote.Request
             }
             if (secretsInt.Count() < 4)
             {
-                for(int i=0;i<4- secretsInt.Count(); i++)
+                var count = secretsInt.Count();
+                for (int i=0;i<4- count; i++)
                 {
                     secretsInt.Add(0);
                 }

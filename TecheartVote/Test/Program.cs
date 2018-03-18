@@ -26,7 +26,7 @@ namespace Test
 
         public static void OnWsdeUsbComed(WsdePort wsdePort)
         {
-            wsdePort.OnDateCome += new OnDateComeHandler(OnDateComeHandler2);
+            wsdePort.OnDataCome += new OnDateComeHandler(OnDateComeHandler2);
             wsdePort.InitGroup(new List<ulong> { 1, 2, 3, 4 });
             Thread.Sleep(1000);
             wsdePort.InitConf(new ConfAction() { channel = 1, date = DateTime.Now, frequency = FrequencyEnum.dBM0 });
@@ -46,7 +46,7 @@ namespace Test
 
         private static void OnDateComeHandler2(WsdePort handshake, SubSelect subselect)
         {
-            Console.WriteLine("{0}:{2}:{1}", subselect.address, subselect.selectDate, subselect.subjectNumber);
+            Console.WriteLine("{0}:{2}:{1}", subselect.address, subselect.selectData, subselect.subjectNumber);
         }
 
         #region usbtest
@@ -85,7 +85,7 @@ namespace Test
         {
             WsdePort wsdePort = new WsdePort("COM3");
             wsdePort.HandshakeEvent += new HandshakeHandler(OnHandshake);
-            wsdePort.OnDateCome += new OnDateComeHandler(OnDateComeHandler);
+            wsdePort.OnDataCome += new OnDateComeHandler(OnDateComeHandler);
             wsdePort.Handshake();
             autoResetEvent.WaitOne();
             Console.WriteLine("初始化配置完成");
@@ -112,7 +112,7 @@ namespace Test
 
         private static void OnDateComeHandler(WsdePort handshake, SubSelect subselect)
         {
-            Console.WriteLine("{0}:{2}:{1}", subselect.address, subselect.selectDate, subselect.subjectNumber);
+            Console.WriteLine("{0}:{2}:{1}", subselect.address, subselect.selectData, subselect.subjectNumber);
         }
         #endregion
     }

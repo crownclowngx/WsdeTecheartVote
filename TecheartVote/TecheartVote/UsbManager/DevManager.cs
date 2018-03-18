@@ -36,6 +36,10 @@ namespace TecheartVote.UsbManager
                             {
                                 String DevName = Entity["Name"] as String;// 设备名称  
                                 String PortNum = Regex.Replace(DevName, @"[^\d.\d]", "");
+                                if (String.IsNullOrEmpty(PortNum))
+                                {
+                                    return -1;
+                                }
                                 return Convert.ToInt32(PortNum);
                             }
                         }

@@ -42,7 +42,7 @@ namespace TecheartVote.Response
             var k3=SubVoteDisplayAction.AnalysisDisplayData(k2,selectes);
 
             subdate.address = k;
-            subdate.selectDate = k3;
+            subdate.selectData = k3;
             subdate.subjectNumber = text[4];
             return subdate;
         }

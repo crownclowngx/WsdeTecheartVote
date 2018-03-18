@@ -16,6 +16,7 @@ namespace TecheartVote.Request
             this.machineAddress = subNumber;
             this.dotPwoer = SubVoteDisplayAction.GetSubVoteDisplayAction(answer);
             this.request = SubVoteDisplayAction.GetDisplayData(answer);
+            this.handshakeSecretKey = 2;
         }
 
         public override Share1Enum GetShare1Enum()

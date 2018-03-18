@@ -9,6 +9,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WsdeUnitTest", "WsdeUnitTes
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", "{56935883-8F2A-4FBE-AA62-35F59110BEBA}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{EB7B53D8-E86C-4453-ABC6-61E59734D9C2}"
+	ProjectSection(SolutionItems) = preProject
+		类库说明.txt = 类库说明.txt
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo", "Demo\Demo.csproj", "{4C05C570-2973-44F9-B89E-4149D37823E9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +34,10 @@ Global
 		{56935883-8F2A-4FBE-AA62-35F59110BEBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{56935883-8F2A-4FBE-AA62-35F59110BEBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{56935883-8F2A-4FBE-AA62-35F59110BEBA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4C05C570-2973-44F9-B89E-4149D37823E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C05C570-2973-44F9-B89E-4149D37823E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C05C570-2973-44F9-B89E-4149D37823E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C05C570-2973-44F9-B89E-4149D37823E9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

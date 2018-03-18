@@ -40,6 +40,7 @@ namespace TecheartVote.UsbManager
                         continue;
                     }
                     WsdePort wsdePort = new WsdePort("COM"+kk.ToString());
+                    wsdePort.wsdeName = "COM" + kk.ToString();
                     wsdePort.HandshakeEvent += new HandshakeHandler(OnHandshake);
                     wsdePort.Handshake();
                     autoResetEvent.WaitOne();

@@ -67,7 +67,7 @@ namespace TecheartVote
         /// </summary>
         public event HandshakeHandler HandshakeEvent;
 
-        public event OnDateComeHandler OnDateCome;
+        public event OnDateComeHandler OnDataCome;
 
         public shareAction1 shareAction1P { get; set; }
         public shareAction2 shareAction2P { get; set; }
@@ -147,7 +147,7 @@ namespace TecheartVote
                     kfirstFinal[i + 1] = kfirst[i];
                 }
                 var resp=SubSelectResponse.GetSubDate(kfirstFinal, handshakeRespone);
-                OnDateCome(this, resp);
+                OnDataCome?.Invoke(this, resp);
                 while (true)
                 {
                     if (serialPort.BytesToRead<21)
@@ -157,7 +157,7 @@ namespace TecheartVote
                     byte[] k = new byte[21];
                     serialPort.Read(k, 0, 21);
                     var resp1=SubSelectResponse.GetSubDate(k, handshakeRespone);
-                    OnDateCome(this, resp1);
+                    OnDataCome?.Invoke(this, resp1);
                 }
             }
             
@@ -257,6 +257,14 @@ namespace TecheartVote
             return true;
         }
 
+        public bool UpdateStateToFeedbackScore()
+        {
+            ConfigScoreCommandRequest request = new ConfigScoreCommandRequest(handshakeRespone, shareAction1P, shareAction2P);
+            request.SetChannel(channel);
+            var postdata = request.GetFinalArray();
+            serialPort.Write(postdata, 0, 21);
+            return true;
+        }
         [Obsolete("该函数已经被弃用，应用该函数下发答案需要按顺序发送所有答案否则将会导致不可预知的问题 请使用 无参的 PushAnswer()")]
         public bool PushAnswer(int quesNumber,String answer)
         {
@@ -284,7 +292,27 @@ namespace TecheartVote
 
         public bool PushScore(long subNumber, String score)
         {
-            PushScoreCommandRequest request = new PushScoreCommandRequest(handshakeRespone, shareAction1P, shareAction2P, subNumber, score);
+            shareAction1 s1 = new shareAction1();
+            s1.clientCanAnswer = false;
+            s1.clientCanClearSoon = shareAction1P.clientCanClearSoon;
+            s1.clientCanSeeSolution = shareAction1P.clientCanSeeSolution;
+            s1.eraseClientMemory = shareAction1P.eraseClientMemory;
+            s1.persistenceConfiguration = shareAction1P.persistenceConfiguration;
+            PushScoreCommandRequest request = new PushScoreCommandRequest(handshakeRespone, s1, shareAction2P, subNumber, score);
+            var postdata = request.GetFinalArray();
+            serialPort.Write(postdata, 0, 21);
+            return true;
+        }
+
+        public bool AllowSubmachineAnswer(long subNumber)
+        {
+            shareAction1 s1 = new shareAction1();
+            s1.clientCanAnswer = true;
+            s1.clientCanClearSoon = shareAction1P.clientCanClearSoon;
+            s1.clientCanSeeSolution = shareAction1P.clientCanSeeSolution;
+            s1.eraseClientMemory = shareAction1P.eraseClientMemory;
+            s1.persistenceConfiguration = shareAction1P.persistenceConfiguration;
+            PushScoreCommandRequest request = new PushScoreCommandRequest(handshakeRespone, s1, shareAction2P, subNumber, "0");
             var postdata = request.GetFinalArray();
             serialPort.Write(postdata, 0, 21);
             return true;
