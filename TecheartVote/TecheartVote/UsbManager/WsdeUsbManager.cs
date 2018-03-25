@@ -52,7 +52,12 @@ namespace TecheartVote.UsbManager
                     {
                         continue;
                     }
-                    wsdePortUsbDic.Add(s, wsdePort);
+                    if (!wsdePortUsbDic.ContainsKey(s))
+                    {
+                        wsdePortUsbDic.Add(s, wsdePort);
+                    }
+                    else
+                        wsdePortUsbDic[s] = wsdePort;
                     OnWsdeUsbComed(wsdePort);
                 }
 

@@ -60,17 +60,15 @@
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.listViewMonitor = new System.Windows.Forms.ListBox();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.button6 = new System.Windows.Forms.Button();
             this.listSorceMonitor = new System.Windows.Forms.ListBox();
             this.button5 = new System.Windows.Forms.Button();
-            this.groupBox7 = new System.Windows.Forms.GroupBox();
-            this.listPushMonitor = new System.Windows.Forms.ListBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.groupBox6.SuspendLayout();
-            this.groupBox7.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -110,7 +108,7 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(185, 23);
             this.button1.TabIndex = 4;
-            this.button1.Text = "设置";
+            this.button1.Text = "设置（第二步）";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -133,6 +131,7 @@
             this.frequency.Name = "frequency";
             this.frequency.Size = new System.Drawing.Size(121, 20);
             this.frequency.TabIndex = 2;
+            this.frequency.Text = "dBM0";
             // 
             // label3
             // 
@@ -161,6 +160,7 @@
             this.channel.Name = "channel";
             this.channel.Size = new System.Drawing.Size(121, 20);
             this.channel.TabIndex = 0;
+            this.channel.Text = "1";
             // 
             // groupBox2
             // 
@@ -189,7 +189,7 @@
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(185, 23);
             this.button2.TabIndex = 1;
-            this.button2.Text = "设置密码表";
+            this.button2.Text = "设置密码表（第一步）";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
@@ -200,6 +200,7 @@
             this.SecretText.Name = "SecretText";
             this.SecretText.Size = new System.Drawing.Size(186, 106);
             this.SecretText.TabIndex = 0;
+            this.SecretText.Text = "1\r\n2\r\n3\r\n4";
             // 
             // groupBox3
             // 
@@ -300,7 +301,7 @@
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(193, 23);
             this.button3.TabIndex = 5;
-            this.button3.Text = "设置动态配置";
+            this.button3.Text = "设置动态配置（第三步）";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
@@ -392,6 +393,7 @@
             this.TitleEditor.Name = "TitleEditor";
             this.TitleEditor.Size = new System.Drawing.Size(242, 432);
             this.TitleEditor.TabIndex = 1;
+            this.TitleEditor.Text = "1:1:1";
             // 
             // button4
             // 
@@ -399,7 +401,7 @@
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(242, 23);
             this.button4.TabIndex = 0;
-            this.button4.Text = "设置答案";
+            this.button4.Text = "设置答案（第四步）";
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
@@ -424,14 +426,25 @@
             // 
             // groupBox6
             // 
+            this.groupBox6.Controls.Add(this.button6);
             this.groupBox6.Controls.Add(this.listSorceMonitor);
             this.groupBox6.Controls.Add(this.button5);
             this.groupBox6.Location = new System.Drawing.Point(750, 24);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(261, 241);
+            this.groupBox6.Size = new System.Drawing.Size(261, 499);
             this.groupBox6.TabIndex = 7;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "分数计算";
+            // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(7, 469);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(248, 23);
+            this.button6.TabIndex = 1;
+            this.button6.Text = "下发分数（第六步）";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // listSorceMonitor
             // 
@@ -439,44 +452,24 @@
             this.listSorceMonitor.ItemHeight = 12;
             this.listSorceMonitor.Location = new System.Drawing.Point(7, 17);
             this.listSorceMonitor.Name = "listSorceMonitor";
-            this.listSorceMonitor.Size = new System.Drawing.Size(248, 184);
+            this.listSorceMonitor.Size = new System.Drawing.Size(248, 412);
             this.listSorceMonitor.TabIndex = 1;
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(7, 212);
+            this.button5.Location = new System.Drawing.Point(7, 441);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(248, 23);
             this.button5.TabIndex = 0;
-            this.button5.Text = "计算分数";
+            this.button5.Text = "计算分数（第五步）";
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.button5_Click);
-            // 
-            // groupBox7
-            // 
-            this.groupBox7.Controls.Add(this.listPushMonitor);
-            this.groupBox7.Location = new System.Drawing.Point(750, 272);
-            this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(261, 251);
-            this.groupBox7.TabIndex = 8;
-            this.groupBox7.TabStop = false;
-            this.groupBox7.Text = "下发监控";
-            // 
-            // listPushMonitor
-            // 
-            this.listPushMonitor.FormattingEnabled = true;
-            this.listPushMonitor.ItemHeight = 12;
-            this.listPushMonitor.Location = new System.Drawing.Point(7, 21);
-            this.listPushMonitor.Name = "listPushMonitor";
-            this.listPushMonitor.Size = new System.Drawing.Size(248, 220);
-            this.listPushMonitor.TabIndex = 0;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1023, 535);
-            this.Controls.Add(this.groupBox7);
             this.Controls.Add(this.groupBox6);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox4);
@@ -497,7 +490,6 @@
             this.groupBox4.PerformLayout();
             this.groupBox5.ResumeLayout(false);
             this.groupBox6.ResumeLayout(false);
-            this.groupBox7.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -539,8 +531,7 @@
         private System.Windows.Forms.GroupBox groupBox6;
         private System.Windows.Forms.ListBox listSorceMonitor;
         private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.GroupBox groupBox7;
-        private System.Windows.Forms.ListBox listPushMonitor;
+        private System.Windows.Forms.Button button6;
     }
 }
 

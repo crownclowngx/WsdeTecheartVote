@@ -48,12 +48,14 @@
     <Compile Include="ActionEnum\FrequencyAction.cs" />
     <Compile Include="ActionEnum\SubSelect.cs" />
     <Compile Include="ActionEnum\SubVoteDisplayAction.cs" />
+    <Compile Include="CacheManager\SroceManager.cs" />
     <Compile Include="CacheManager\SubjectCacheManger.cs" />
     <Compile Include="Cryptogram.cs" />
     <Compile Include="Request\BaseCommandRequest.cs" />
     <Compile Include="Request\ConfigScoreCommandRequest.cs" />
     <Compile Include="Request\ConfigureCommandRequest.cs" />
     <Compile Include="Request\GroupingCommandRequest.cs" />
+    <Compile Include="Request\PushNewScoreCommandRequest.cs" />
     <Compile Include="Request\PushAnswerCommandRequest.cs" />
     <Compile Include="Request\PushScoreCommandRequest.cs" />
     <Compile Include="Response\HandshakeResponse.cs" />

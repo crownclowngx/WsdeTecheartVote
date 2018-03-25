@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace TecheartVote
 {
+    [Obsolete("因为分数下发策略修改，该cache已经不在适用",true)]
     public class SroceCacheManager
     {
         private Dictionary<int, String> dic = new Dictionary<int, string>();

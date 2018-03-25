@@ -20,4 +20,3 @@ E:\Code\WsdeTecheartVote\TecheartVote\TecheartVote\bin\Debug\TecheartVote.pdb
 E:\Code\WsdeTecheartVote\TecheartVote\TecheartVote\obj\Debug\WsdeTecheartVote.csproj.CoreCompileInputs.cache
 E:\Code\WsdeTecheartVote\TecheartVote\TecheartVote\obj\Debug\TecheartVote.dll
 E:\Code\WsdeTecheartVote\TecheartVote\TecheartVote\obj\Debug\TecheartVote.pdb
-E:\Code\WsdeTecheartVote\TecheartVote\TecheartVote\obj\Debug\WsdeTecheartVote.csprojResolveAssemblyReference.cache

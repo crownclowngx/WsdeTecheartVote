@@ -30,6 +30,12 @@ namespace TecheartVote
         /// 答案缓存
         /// </summary>
         public SubjectCacheManger subAnswerDic { get; set; }
+
+        /// <summary>
+        /// 答案缓存
+        /// </summary>
+        public SroceManager sroceManager { get; set; }
+
         /// <summary>
         /// 串口类
         /// </summary>
@@ -61,7 +67,7 @@ namespace TecheartVote
         /// </summary>
         public delegate void HandshakeHandler(WsdePort handshake);
 
-        public delegate void OnDateComeHandler(WsdePort handshake,SubSelect subselect);
+        public delegate void OnDateComeHandler(WsdePort port,SubSelect subselect);
         /// <summary>
         /// 握手事件
         /// </summary>
@@ -86,6 +92,7 @@ namespace TecheartVote
             HandshakeAnalysis = k => { return HandshakeTools.AnalysisHandshake(k.ToArray()); };
             shareAction1P = shareAction1.GetAllAllowShare();
             shareAction2P = shareAction2.GetAllAllowShare();
+            sroceManager = new SroceManager();
         }
         private void OnDataReceived(object sender, SerialDataReceivedEventArgs e)
         {
@@ -191,7 +198,7 @@ namespace TecheartVote
         /// 主机获取剋通讯的所有投票器组
         /// </summary>
         /// <returns></returns>
-        public bool InitGroup(List<UInt64> secrets)
+        public bool SetAccessPasswords(IList<UInt64> secrets)
         {
             
             if (!handshaked)
@@ -257,6 +264,7 @@ namespace TecheartVote
             return true;
         }
 
+        [Obsolete("由于下发分数规则修改，该函数已不再支持",true)]
         public bool UpdateStateToFeedbackScore()
         {
             ConfigScoreCommandRequest request = new ConfigScoreCommandRequest(handshakeRespone, shareAction1P, shareAction2P);
@@ -289,7 +297,7 @@ namespace TecheartVote
             }
             return true;
         }
-
+        [Obsolete("分数下发策略改变该接口已失效",true)]
         public bool PushScore(long subNumber, String score)
         {
             shareAction1 s1 = new shareAction1();
@@ -303,7 +311,7 @@ namespace TecheartVote
             serialPort.Write(postdata, 0, 21);
             return true;
         }
-
+        [Obsolete("分数下发策略改变该接口已失效",true)]
         public bool AllowSubmachineAnswer(long subNumber)
         {
             shareAction1 s1 = new shareAction1();
@@ -316,6 +324,41 @@ namespace TecheartVote
             var postdata = request.GetFinalArray();
             serialPort.Write(postdata, 0, 21);
             return true;
+        }
+
+        /// <summary>
+        /// 设置子机分数
+        /// </summary>
+        /// <param name="subNumber"></param>
+        /// <param name="score"></param>
+        public void SetScore(long subNumber,String score)
+        {
+            if (sroceManager.HasSubNumber(subNumber))
+            {
+                sroceManager.Update(subNumber, score);
+            }
+            else
+            {
+                sroceManager.Add(subNumber, score);
+            }
+        }
+
+        /// <summary>
+        /// 下发所有分数
+        /// </summary>
+        public void PushScore()
+        {
+            sroceManager.GetSroce().ToList().ForEach(k => 
+            {
+                if (shareAction1P.eraseClientMemory)
+                {
+                    throw new Exception("下载分数前请将 eraseClientMemory 设置为false");
+                }
+                PushNewScoreCommandRequest request = new PushNewScoreCommandRequest(handshakeRespone, shareAction1P, shareAction2P, k.subNumber, k.sroce, k.number);
+                var postdata = request.GetFinalArray();
+                serialPort.Write(postdata, 0, 21);
+                Thread.Sleep(15);
+            });
         }
     }
 }

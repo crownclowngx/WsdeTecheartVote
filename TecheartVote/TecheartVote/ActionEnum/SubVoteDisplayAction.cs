@@ -65,7 +65,7 @@ namespace TecheartVote
         public static Byte GetSubVoteDisplayAction(String str)
         {
             Byte response = 0;
-            if (Verification.VerificationTools.StringIsNumber(str))
+            if (!Verification.VerificationTools.StringIsNumber(str))
             {
                 response += 128;
             }

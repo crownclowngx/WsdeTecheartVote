@@ -22,9 +22,13 @@ namespace Demo
             InitializeComponent();
             WsdeUsbManager manager = new WsdeUsbManager();
             manager.OnWsdeUsbComed += new WsdeUsbManager.OnWsdeUsbHandler(OnWsdeUsbComed);
-            
+            manager.OnWsdeUsbExited += new WsdeUsbManager.OnWsdeUsbHandler(OnWsdeUsbExitHandler);
         }
-
+        public void OnWsdeUsbExitHandler(WsdePort wsdePort)
+        {
+            label2.Invoke(new Action(() => { label2.Text = ""; }));
+            MessageBox.Show("主机已被拔出 名称："+wsdePort.wsdeName);
+        }
         public  void OnWsdeUsbComed(WsdePort wsdePort)
         {
             post = wsdePort;
@@ -42,13 +46,14 @@ namespace Demo
             {
                 sources[subselect.address] += post.subAnswerDic.GetScore(subselect.subjectNumber);
             }
-            if(completion && subselect.selectData == "login")
-            {
-                post.PushScore(subselect.address, sources[subselect.address].ToString());
-                listPushMonitor.Invoke(new Action(()=> { listPushMonitor.Items.Add(String.Format("子机地址{0} , 下发的分数{1}", subselect.address, sources[subselect.address].ToString())); }));
-            }
             listViewMonitor.Invoke(new Action(() => { listViewMonitor.Items.Add(String.Format("子机编号:{0}，题号:{1},选择答案:{2},答案是否正确{3}", subselect.address, subselect.subjectNumber, subselect.selectData, isright)); }));
         }
+
+        /// <summary>
+        /// 设置初始化配置，即设置信道等基本配置
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button1_Click(object sender, EventArgs e)
         {
             var channelselect = channel.SelectedItem.ToString();
@@ -60,12 +65,22 @@ namespace Demo
             post.InitConf(new ConfAction() { channel = Convert.ToInt32(channelselect), frequency = frequencyselect });
         }
 
+        /// <summary>
+        /// 设置密码表 即子机可以通过该密码与主机通讯
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button2_Click(object sender, EventArgs e)
         {
             var secret = SecretText.Text.Replace("\r","").Split('\n').ToList();
-            post.InitGroup(secret.ConvertAll(k => Convert.ToUInt64(k)));
+            post.SetAccessPasswords(secret.ConvertAll(k => Convert.ToUInt64(k)));
         }
 
+        /// <summary>
+        /// 设置动态配置
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button3_Click(object sender, EventArgs e)
         {
             if (persistenceConfiguration.Checked)
@@ -133,6 +148,11 @@ namespace Demo
 
         }
 
+        /// <summary>
+        /// 设置题号以及答案
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button4_Click(object sender, EventArgs e)
         {
             var listpro=TitleEditor.Text.Replace("\r", "").Split('\n').ToList();
@@ -158,8 +178,18 @@ namespace Demo
             foreach (var v in sources)
             {
                 listSorceMonitor.Items.Add(String.Format("用户id:{0} , 分数:{1}",v.Key,v.Value));
+                post.SetScore(v.Key, v.Value.ToString());
             }
-            post.UpdateStateToFeedbackScore();
+        }
+
+        /// <summary>
+        /// 下发分数，但是在下发前 终端擦除选项必须是非勾选状态否则将有异常
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void button6_Click(object sender, EventArgs e)
+        {
+            post.PushScore();
         }
     }
 }

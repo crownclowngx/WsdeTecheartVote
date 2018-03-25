@@ -7,6 +7,7 @@ using TecheartVote.Response;
 
 namespace TecheartVote.Request
 {
+    [Obsolete("因为现有逻辑下不需要单独修改 某一位所以不需要该类")]
     public class ConfigScoreCommandRequest:BaseCommandRequest
     {
         public ConfigScoreCommandRequest(HandshakeResponse response, shareAction1 s1, shareAction2 s2) :base(response, s1, s2)

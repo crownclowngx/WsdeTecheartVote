@@ -27,7 +27,7 @@ namespace Test
         public static void OnWsdeUsbComed(WsdePort wsdePort)
         {
             wsdePort.OnDataCome += new OnDateComeHandler(OnDateComeHandler2);
-            wsdePort.InitGroup(new List<ulong> { 1, 2, 3, 4 });
+            wsdePort.SetAccessPasswords(new List<ulong> { 1, 2, 3, 4 });
             Thread.Sleep(1000);
             wsdePort.InitConf(new ConfAction() { channel = 1, date = DateTime.Now, frequency = FrequencyEnum.dBM0 });
             Thread.Sleep(1000);
@@ -89,13 +89,12 @@ namespace Test
             wsdePort.Handshake();
             autoResetEvent.WaitOne();
             Console.WriteLine("初始化配置完成");
-            wsdePort.PushScore(1, "10");
             Console.Read();
         }
 
         private static void OnHandshake(WsdePort response)
         {
-            response.InitGroup(new List<ulong> { 1, 2, 3, 4 });
+            response.SetAccessPasswords(new List<ulong> { 1, 2, 3, 4 });
             response.handshakeRespone.SecretKey = 4;
             Thread.Sleep(200);
             response.InitConf(new ConfAction() { channel=1, date=DateTime.Now, frequency=FrequencyEnum.dBM0 });
@@ -106,7 +105,6 @@ namespace Test
             Thread.Sleep(200);
             //response.PushAnswer(129, "A");
             Thread.Sleep(200);
-            response.PushScore(1, "100");
             autoResetEvent.Set();
         }
 
