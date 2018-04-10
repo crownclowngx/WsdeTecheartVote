@@ -30,12 +30,6 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.label4 = new System.Windows.Forms.Label();
-            this.frequency = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.channel = new System.Windows.Forms.ComboBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label5 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
@@ -63,12 +57,18 @@
             this.button6 = new System.Windows.Forms.Button();
             this.listSorceMonitor = new System.Windows.Forms.ListBox();
             this.button5 = new System.Windows.Forms.Button();
-            this.groupBox1.SuspendLayout();
+            this.channel = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.frequency = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.groupBox6.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -87,80 +87,6 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(0, 12);
             this.label2.TabIndex = 1;
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.button1);
-            this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.frequency);
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.channel);
-            this.groupBox1.Location = new System.Drawing.Point(14, 203);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(200, 122);
-            this.groupBox1.TabIndex = 2;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "基础设置";
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(8, 93);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(185, 23);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "设置（第二步）";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(6, 50);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(29, 12);
-            this.label4.TabIndex = 3;
-            this.label4.Text = "频率";
-            // 
-            // frequency
-            // 
-            this.frequency.FormattingEnabled = true;
-            this.frequency.Items.AddRange(new object[] {
-            "dBM0",
-            "dBM1"});
-            this.frequency.Location = new System.Drawing.Point(72, 47);
-            this.frequency.Name = "frequency";
-            this.frequency.Size = new System.Drawing.Size(121, 20);
-            this.frequency.TabIndex = 2;
-            this.frequency.Text = "dBM0";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 23);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(29, 12);
-            this.label3.TabIndex = 1;
-            this.label3.Text = "信道";
-            // 
-            // channel
-            // 
-            this.channel.FormattingEnabled = true;
-            this.channel.Items.AddRange(new object[] {
-            "1",
-            "2",
-            "3",
-            "4",
-            "5",
-            "6",
-            "7",
-            "8",
-            "9",
-            "10"});
-            this.channel.Location = new System.Drawing.Point(72, 20);
-            this.channel.Name = "channel";
-            this.channel.Size = new System.Drawing.Size(121, 20);
-            this.channel.TabIndex = 0;
-            this.channel.Text = "1";
             // 
             // groupBox2
             // 
@@ -465,6 +391,80 @@
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
+            // channel
+            // 
+            this.channel.FormattingEnabled = true;
+            this.channel.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10"});
+            this.channel.Location = new System.Drawing.Point(72, 20);
+            this.channel.Name = "channel";
+            this.channel.Size = new System.Drawing.Size(121, 20);
+            this.channel.TabIndex = 0;
+            this.channel.Text = "1";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(6, 23);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(29, 12);
+            this.label3.TabIndex = 1;
+            this.label3.Text = "信道";
+            // 
+            // frequency
+            // 
+            this.frequency.FormattingEnabled = true;
+            this.frequency.Items.AddRange(new object[] {
+            "dBM0",
+            "dBM1"});
+            this.frequency.Location = new System.Drawing.Point(72, 47);
+            this.frequency.Name = "frequency";
+            this.frequency.Size = new System.Drawing.Size(121, 20);
+            this.frequency.TabIndex = 2;
+            this.frequency.Text = "dBM0";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(6, 50);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(29, 12);
+            this.label4.TabIndex = 3;
+            this.label4.Text = "频率";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(8, 93);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(185, 23);
+            this.button1.TabIndex = 4;
+            this.button1.Text = "设置（第二步）";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.button1);
+            this.groupBox1.Controls.Add(this.label4);
+            this.groupBox1.Controls.Add(this.frequency);
+            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.channel);
+            this.groupBox1.Location = new System.Drawing.Point(14, 203);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(200, 122);
+            this.groupBox1.TabIndex = 2;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "基础设置";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -480,8 +480,6 @@
             this.Controls.Add(this.label1);
             this.Name = "Form1";
             this.Text = "Techeart WSDE Answer Card Demo";
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
@@ -490,6 +488,8 @@
             this.groupBox4.PerformLayout();
             this.groupBox5.ResumeLayout(false);
             this.groupBox6.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -499,12 +499,6 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.ComboBox channel;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ComboBox frequency;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.TextBox SecretText;
@@ -532,6 +526,12 @@
         private System.Windows.Forms.ListBox listSorceMonitor;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.ComboBox channel;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ComboBox frequency;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.GroupBox groupBox1;
     }
 }
 

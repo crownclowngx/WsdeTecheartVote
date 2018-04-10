@@ -15,6 +15,10 @@ namespace TecheartVote
     public class WsdePort
     {
         /// <summary>
+        /// 是否是测试使用
+        /// </summary>
+        bool IsTest { get; set; }
+        /// <summary>
         /// 主机名称
         /// </summary>
         public string wsdeName{get;set;}
@@ -78,8 +82,10 @@ namespace TecheartVote
         public shareAction1 shareAction1P { get; set; }
         public shareAction2 shareAction2P { get; set; }
 
-        public WsdePort(String port)
+        public WsdePort(String port,bool isTest=false)
         {
+            IsTest = isTest;
+            wsdeName = "WSDE-"+port;
             handMemList = new List<int>();
             memList = new List<int>();
             subAnswerDic = new SubjectCacheManger();
@@ -88,7 +94,7 @@ namespace TecheartVote
             serialPort.BaudRate = 115200;
             serialPort.PortName = port;
             serialPort.DataBits = 8;
-            serialPort.Open();
+            if (!isTest) { serialPort.Open(); }
             HandshakeAnalysis = k => { return HandshakeTools.AnalysisHandshake(k.ToArray()); };
             shareAction1P = shareAction1.GetAllAllowShare();
             shareAction2P = shareAction2.GetAllAllowShare();
@@ -190,7 +196,7 @@ namespace TecheartVote
             var last=VerificationTools.HashCalc(l);
             l.Add(Convert.ToByte(last));
             TxData = l.ToArray();
-            serialPort.Write(TxData, 0, 82);
+            TryWrite(TxData, 0, 82);
             return true;
         }
 
@@ -201,7 +207,7 @@ namespace TecheartVote
         public bool SetAccessPasswords(IList<UInt64> secrets)
         {
             
-            if (!handshaked)
+            if (!handshaked && !IsTest)
             {
                 throw new Exception("请首先握手调用Handshake函数");
             }
@@ -220,7 +226,7 @@ namespace TecheartVote
             {
                 GroupingCommandRequest groupingCommandRequest = new GroupingCommandRequest(handshakeRespone, v.Value, Convert.ToInt32(v.Key), shareAction1P, shareAction2P);
                 var postdata = groupingCommandRequest.GetFinalArray();
-                serialPort.Write(postdata, 0, 21);
+                TryWrite(postdata, 0, 21);
             }
             return true;
         }
@@ -247,7 +253,7 @@ namespace TecheartVote
                 request.SetDate(conf.date);
             }
             var postdata = request.GetFinalArray();
-            serialPort.Write(postdata, 0, 21);
+            TryWrite(postdata, 0, 21);
             return true;
         }
 
@@ -260,7 +266,7 @@ namespace TecheartVote
             ConfigureCommandRequest request = new ConfigureCommandRequest(handshakeRespone, shareAction1P, shareAction2P);
             request.SetChannel(channel);
             var postdata = request.GetFinalArray();
-            serialPort.Write(postdata, 0, 21);
+            TryWrite(postdata, 0, 21);
             return true;
         }
 
@@ -270,7 +276,7 @@ namespace TecheartVote
             ConfigScoreCommandRequest request = new ConfigScoreCommandRequest(handshakeRespone, shareAction1P, shareAction2P);
             request.SetChannel(channel);
             var postdata = request.GetFinalArray();
-            serialPort.Write(postdata, 0, 21);
+            TryWrite(postdata, 0, 21);
             return true;
         }
         [Obsolete("该函数已经被弃用，应用该函数下发答案需要按顺序发送所有答案否则将会导致不可预知的问题 请使用 无参的 PushAnswer()")]
@@ -278,7 +284,7 @@ namespace TecheartVote
         {
             PushAnswerCommandRequest request = new PushAnswerCommandRequest(handshakeRespone, shareAction1P, shareAction2P, quesNumber, answer);
             var postdata = request.GetFinalArray();
-            serialPort.Write(postdata, 0, 21);
+            TryWrite(postdata, 0, 21);
             return true;
         }
 
@@ -292,7 +298,7 @@ namespace TecheartVote
             {
                 PushAnswerCommandRequest request = new PushAnswerCommandRequest(handshakeRespone, shareAction1P, shareAction2P, i, subAnswerDic.GetAnswer(i));
                 var postdata = request.GetFinalArray();
-                serialPort.Write(postdata, 0, 21);
+                TryWrite(postdata, 0, 21);
                 Thread.Sleep(15);
             }
             return true;
@@ -308,7 +314,7 @@ namespace TecheartVote
             s1.persistenceConfiguration = shareAction1P.persistenceConfiguration;
             PushScoreCommandRequest request = new PushScoreCommandRequest(handshakeRespone, s1, shareAction2P, subNumber, score);
             var postdata = request.GetFinalArray();
-            serialPort.Write(postdata, 0, 21);
+            TryWrite(postdata, 0, 21);
             return true;
         }
         [Obsolete("分数下发策略改变该接口已失效",true)]
@@ -322,7 +328,7 @@ namespace TecheartVote
             s1.persistenceConfiguration = shareAction1P.persistenceConfiguration;
             PushScoreCommandRequest request = new PushScoreCommandRequest(handshakeRespone, s1, shareAction2P, subNumber, "0");
             var postdata = request.GetFinalArray();
-            serialPort.Write(postdata, 0, 21);
+            TryWrite(postdata, 0, 21);
             return true;
         }
 
@@ -356,9 +362,14 @@ namespace TecheartVote
                 }
                 PushNewScoreCommandRequest request = new PushNewScoreCommandRequest(handshakeRespone, shareAction1P, shareAction2P, k.subNumber, k.sroce, k.number);
                 var postdata = request.GetFinalArray();
-                serialPort.Write(postdata, 0, 21);
+                TryWrite(postdata, 0, 21);
                 Thread.Sleep(15);
             });
+        }
+
+        void TryWrite(byte[] postdata, int offset, int count)
+        {
+            if (!IsTest) { serialPort.Write(postdata, 0, 21); }
         }
     }
 }
