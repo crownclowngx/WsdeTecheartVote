@@ -22,7 +22,7 @@ WsdePort：投票器抽象模型
 事件：
 1.HandshakeEvent 握手成功后触发事件，返回WsdePort对象本身
 
-2.OnDateCome 当子机有数据到达时触发事件，返回WsdePort对象以及 子机返回值
+2.OnDataCome 当子机有数据到达时触发事件，返回WsdePort对象以及 子机返回值
 
 
 

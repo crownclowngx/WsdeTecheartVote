@@ -33,9 +33,9 @@ namespace Demo
         {
             post = wsdePort;
             label2.Invoke(new Action(()=> { label2.Text = post.wsdeName; }));
-            post.OnDataCome += new WsdePort.OnDateComeHandler(OnDateComeHandler2);
+            post.OnDataCome += new WsdePort.OnDataComeHandler(OnDataComeHandler2);
         }
-        private void OnDateComeHandler2(WsdePort handshake, SubSelect subselect)
+        private void OnDataComeHandler2(WsdePort handshake, SubSelect subselect)
         {
             if (!sources.ContainsKey(subselect.address))
             {

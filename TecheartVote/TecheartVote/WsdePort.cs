@@ -71,13 +71,13 @@ namespace TecheartVote
         /// </summary>
         public delegate void HandshakeHandler(WsdePort handshake);
 
-        public delegate void OnDateComeHandler(WsdePort port,SubSelect subselect);
+        public delegate void OnDataComeHandler(WsdePort port,SubSelect subselect);
         /// <summary>
         /// 握手事件
         /// </summary>
         public event HandshakeHandler HandshakeEvent;
 
-        public event OnDateComeHandler OnDataCome;
+        public event OnDataComeHandler OnDataCome;
 
         public shareAction1 shareAction1P { get; set; }
         public shareAction2 shareAction2P { get; set; }
@@ -159,7 +159,7 @@ namespace TecheartVote
                 {
                     kfirstFinal[i + 1] = kfirst[i];
                 }
-                var resp=SubSelectResponse.GetSubDate(kfirstFinal, handshakeRespone);
+                var resp=SubSelectResponse.GetSubData(kfirstFinal, handshakeRespone);
                 OnDataCome?.Invoke(this, resp);
                 while (true)
                 {
@@ -169,7 +169,7 @@ namespace TecheartVote
                     }
                     byte[] k = new byte[21];
                     serialPort.Read(k, 0, 21);
-                    var resp1=SubSelectResponse.GetSubDate(k, handshakeRespone);
+                    var resp1=SubSelectResponse.GetSubData(k, handshakeRespone);
                     OnDataCome?.Invoke(this, resp1);
                 }
             }

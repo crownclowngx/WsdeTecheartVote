@@ -9,20 +9,20 @@ namespace TecheartVote.Response
 {
     public class SubSelectResponse
     {
-        public static SubSelect GetSubDate(byte[] date, HandshakeResponse handresponse)
+        public static SubSelect GetSubData(byte[] data, HandshakeResponse handresponse)
         {
-            SubSelect subdate = new SubSelect();
-            if (!VerificationTools.HashCheck(date.ToList()))
+            SubSelect subdata = new SubSelect();
+            if (!VerificationTools.HashCheck(data.ToList()))
             {
                 return null;
             }
-            var decr = Cryptogram.Decrypt(date, handresponse);
+            var decr = Cryptogram.Decrypt(data, handresponse);
 
             return AnalysisSubSelect(decr);
         }
         public static SubSelect AnalysisSubSelect(byte[] text)
         {
-            SubSelect subdate = new SubSelect();
+            SubSelect subdata = new SubSelect();
             byte[] addresss = new byte[4];
             addresss[0] = text[0];
             addresss[1] = text[1];
@@ -41,10 +41,10 @@ namespace TecheartVote.Response
             selectes[7] = text[13];
             var k3=SubVoteDisplayAction.AnalysisDisplayData(k2,selectes);
 
-            subdate.address = k;
-            subdate.selectData = k3;
-            subdate.subjectNumber = text[4];
-            return subdate;
+            subdata.address = k;
+            subdata.selectData = k3;
+            subdata.subjectNumber = text[4];
+            return subdata;
         }
     }
 }
