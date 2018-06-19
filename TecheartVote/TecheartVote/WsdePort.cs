@@ -369,7 +369,7 @@ namespace TecheartVote
 
         void TryWrite(byte[] postdata, int offset, int count)
         {
-            if (!IsTest) { serialPort.Write(postdata, 0, 21); }
+            if (!IsTest) { serialPort.Write(postdata, offset, count); }
         }
     }
 }
